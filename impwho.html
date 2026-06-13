@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynamic Bingo Game</title>
+    <link rel="stylesheet" href="index.css">
+    <link rel="manifest" href="./manifest.json">
+</head>
+<body>
+
+    <h1>Bingo Game</h1>
+    
+    <div class="controls">
+        <button onclick="initGame(5)">New 5x5 Game (1-25)</button>
+        <button onclick="initGame(7)">New 7x7 Game (1-49)</button>
+        <button onclick="initGame(10)">New 10x10 Game (1-100)</button>
+    </div>
+
+    <div class="bingo-tracker" id="tracker">
+        <span class="letter">B</span>
+        <span class="letter">I</span>
+        <span class="letter">N</span>
+        <span class="letter">G</span>
+        <span class="letter">O</span>
+    </div>
+
+    <div id="board" class="bingo-board"></div>
+    <div id="message" class="message"></div>
+
+    <script src="index.js"></script>
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('./sw.js')
+                    .then((reg) => console.log('Service Worker registered successfully!', reg))
+                    .catch((err) => console.log('Service Worker registration failed:', err));
+            });
+        }
+    </script>
+</body>
+</html>
